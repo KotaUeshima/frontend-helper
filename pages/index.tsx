@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null)
-  const [result, setResult] = useState<string | null>(null)
+  const [result, setResult] = useState<string>('')
 
   const handleSearch = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -63,7 +63,9 @@ export default function Home() {
           </form>
         </div>
         <div className='h-[70vh] w-screen flex justify-center items-center'>
-          <div className='bg-white p-10 max-w-3xl rounded-md drop-shadow-lg'>{result && <p className='text-base font-bold'>{result}</p>}</div>
+          <div className='bg-white p-10 max-w-3xl rounded-md drop-shadow-lg'>
+            <div dangerouslySetInnerHTML={{ __html: result }} />
+          </div>
         </div>
       </main>
     </>

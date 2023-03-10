@@ -18,6 +18,12 @@ type Data = {
   result: string | undefined
 }
 
+// create prompt for chatGPT AI model
+const generatePrompt = (input: string): string => {
+  const prompt = `Using React.js and Tailwind.css write code for a ${input}, only return back code, no import statements neccesary`
+  return prompt
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data | Error>) {
   const request = req.body.input
 
@@ -38,11 +44,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: `${request}` }],
+        messages: [{ role: 'user', content: generatePrompt(request) }],
       }),
     })
 
     const chatData = await chatResponse.json()
+
+    // console.log(chatData.choices[0].message.content)
 
     res.status(200).json({ result: chatData.choices[0].message.content })
 
