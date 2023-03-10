@@ -36,10 +36,10 @@ export default function Home() {
       if (inputRef.current) {
         inputRef.current.value = ''
       }
-    } catch (error: any) {
+    } catch (e: any) {
       // console error and alert error
-      console.error(error.message)
-      alert(error.message)
+      console.error(e.message)
+      alert(e.message)
     }
   }
 
@@ -51,16 +51,20 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='min-h-screen flex flex-col'>
-        <form onSubmit={handleSearch} className='flex flex-col justify-center items-center bg-primary p-10'>
-          <input
-            ref={inputRef}
-            className='text-4xl text-white placeholder:text-white bg-transparent outline-none'
-            type='text'
-            placeholder='Try Frontend Helper...'
-          />
-        </form>
-        <div className='grow w-screen bg-secondary flex justify-center items-center'>{result && <p className='text-base font-bold'>{result}</p>}</div>
+      <main className='min-h-screen w-screen bg-primary flex flex-col'>
+        <div className='h-[30vh] w-screen flex justify-center items-center'>
+          <form onSubmit={handleSearch} className='bg-white p-10 rounded-md drop-shadow-lg'>
+            <input
+              ref={inputRef}
+              className='text-3xl text-secondary placeholder:text-gray-500 bg-transparent outline-none'
+              type='text'
+              placeholder='Try Frontend Helper...'
+            />
+          </form>
+        </div>
+        <div className='h-[70vh] w-screen flex justify-center items-center'>
+          <div className='bg-white p-10 max-w-3xl rounded-md drop-shadow-lg'>{result && <p className='text-base font-bold'>{result}</p>}</div>
+        </div>
       </main>
     </>
   )
