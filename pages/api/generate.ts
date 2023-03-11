@@ -33,6 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         message: 'Empty input, please try again',
       },
     })
+    return
   }
 
   try {
@@ -50,7 +51,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const chatData = await chatResponse.json()
 
-    // console.log(chatData.choices[0].message.content)
+    if (chatData?.error) {
+      res.status(500).json({
+        error: {
+          message: 'Invalid API Key',
+        },
+      })
+    }
 
     res.status(200).json({ result: chatData.choices[0].message.content })
 
