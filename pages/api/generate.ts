@@ -20,7 +20,7 @@ type Data = {
 
 // create prompt for chatGPT AI model
 const generatePrompt = (input: string): string => {
-  const prompt = `Using React.js and Tailwind.css write code for a ${input}, only return back code, no import statements neccesary`
+  const prompt = `Using React.js and Tailwind.css write code for a ${input}, only return back code, no import statements neccesary. Change all className attributes to just class.`
   return prompt
 }
 
